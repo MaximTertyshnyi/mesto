@@ -5,7 +5,12 @@
         border: none;
         width: 100%;
         min-height: 50px;
-        background: #000000;
+        background-color: #000000;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+        text-align: center;
+        color: #FFFFFF;
         transition: opacity .5s;
     }
     
