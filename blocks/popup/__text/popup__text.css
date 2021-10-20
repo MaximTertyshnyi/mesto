@@ -6,10 +6,9 @@
   line-height: 17px;
   font-weight: 400;
   color: #000000;
-  margin-bottom: 30px;
   padding: 0 0 13px 0;
 }
 
-.popup__text:last-child{
-  margin-bottom: 0;
+.popup__text:first-child {
+  margin-bottom: 30px;
 }

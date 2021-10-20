@@ -14,3 +14,10 @@
   opacity: 0.5;
   cursor: url(../../../../images/cursor.png), auto;
 }
+
+@media (max-width: 640px) {
+  .popup__close{
+    top: 56px;
+    right: 0;
+}
+} 
