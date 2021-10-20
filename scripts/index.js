@@ -1,5 +1,5 @@
 // Делаем выборку DOM элементов
-const popupOpenButtonElement = document.querySelector('.edit-button')
+const popupOpenButtonElement = document.querySelector('.profile__edit-button')
 const popupElement = document.querySelector('.popup')
 const popupCloseButtonElement = popupElement.querySelector('.popup__close')
 
@@ -9,6 +9,8 @@ const togglePopupVisibility = function () {
 
 const openPopup = function () {
     popupElement.classList.add('popup_opened')
+    nameInput.value = nameElement.textContent;
+    jobInput.value = descriptionElement.textContent;
 }
 
 const closePopup = function () {
@@ -35,8 +37,8 @@ let descriptionElement = document.querySelector(".profile__subtitle")
 // Находим форму в DOM
 let formElement = document.querySelector(".popup__form")
 // Находим поля формы в DOM
-let nameInput = formElement.querySelector(".popup__text-name")
-let jobInput = formElement.querySelector(".popup__text-business")
+let nameInput = formElement.querySelector(".popup__text_name")
+let jobInput = formElement.querySelector(".popup__text_business")
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
