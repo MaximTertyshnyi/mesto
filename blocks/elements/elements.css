@@ -19,15 +19,15 @@
 
   @media (max-width: 955px) {
     .elements{
-    width: calc(100% - 27px * 2);
+      width: calc(100% - 27px * 2);
     }
   }
 
   @media (max-width: 640px) {
     .elements{
-    grid-template-columns: repeat(1, auto);
-    grid-template-rows: repeat(6, auto);
-    width: calc(100% - 19px * 2);
-    margin: 0 auto 48px auto;
+      grid-template-columns: repeat(1, auto);
+      grid-template-rows: repeat(6, auto);
+      width: calc(100% - 19px * 2);
+      margin: 0 auto 48px auto;
   }
 } 
