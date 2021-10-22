@@ -6,9 +6,9 @@
     border-bottom: 1px solid #545454;
   }
 
-  @media (max-width: 955px) {
+  @media (max-width: 955px){
     .header{
-        width: calc(100% - 27px * 2);
+      width: calc(100% - 27px * 2);
     }
   }
 
@@ -17,4 +17,4 @@
         width: 100%;
         margin: 28px auto 40px auto;
     }
-}
+  }
