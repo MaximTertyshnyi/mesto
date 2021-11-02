@@ -23,7 +23,7 @@
         <button class="profile__add-button" type="button"></button>
       </section>
       <section class="elements">
-        <div class="element">
+        <!-- <div class="element">
           <img class="element__ithem" src="./images/pexels-anastasia-pavlova-8290466.jpg" alt="">
           <div class="element__detail">
             <h2 class="element__title">Гербарий</h2>
@@ -64,13 +64,13 @@
             <h2 class="element__title">Пляж</h2>
             <button class="element__button" type="button"></button>
           </div>
-        </div>
+        </div> -->
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
-    </footer>
-    <section class="popup">
+    </footer>  
+    <div class="popup popup_type_edit">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -80,7 +80,35 @@
           <button  type="submit" class="popup__button-save">Сохранить</button>
         </form>
       </div>
-    </section>
+    </div> 
+    <div class="popup popup_type_add">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form name="user-description" class="popup__form">
+          <input class="popup__text popup__text_name" name="textName" type="text" placeholder="Название" value="">
+          <input class="popup__text popup__text_business" name="textBusiness" type="text" placeholder="Ссылка на картинку" value="">
+          <button  type="submit" class="popup__button-save">Coздать</button>
+        </form>
+      </div>
+    </div> 
+    <div class="popup popup_type_img">
+      <div class="popup__container-img">
+        <button class="popup__close" type="button"></button>
+        <img class="popup__img" src="" alt="">
+        <h2 class="popup__title-img"></h2>
+      </div>
+    </div> 
+    <template class="element-template">
+      <div class="element">
+        <img class="element__ithem" src="" alt="">
+        <div class="element__detail">
+          <h2 class="element__title"></h2>
+          <button class="element__like-button" type="button"></button>
+        </div>
+        <button class="element__delite-button" type="button"></button>
+      </div>
+    </template>
   </div>
   <script src="./scripts/index.js"></script>
 </body>
