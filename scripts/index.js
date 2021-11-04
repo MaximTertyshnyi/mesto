@@ -106,6 +106,7 @@ function createCard(name, link) {
     const elementCard = elementTemplate.querySelector('.element').cloneNode(true);
     elementCard.querySelector(".element__title").textContent = name;
     elementCard.querySelector(".element__ithem").src = link;
+    elementCard.querySelector(".element__ithem").alt = name;
     setListeners(elementCard);
     return elementCard;
 }
@@ -202,6 +203,7 @@ function openImagePopup(element) {
     const popupElementTitleImg = popupImg.querySelector(".popup__title-img")
     // значения
     popupElementImg.src = elementImg.src
+    popupElementImg.alt = elementImg.alt
     popupElementTitleImg.textContent = elementTitle.textContent
 }
 
