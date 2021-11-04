@@ -13,5 +13,5 @@
 
 .element__delite-button:hover{
     opacity: .6;
-    cursor: url(../../../images/cursor.png), auto;
+    cursor: pointer;
 }

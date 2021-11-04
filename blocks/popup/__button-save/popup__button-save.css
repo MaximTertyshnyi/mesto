@@ -16,5 +16,5 @@
     
 .popup__button-save:hover{
     opacity: .6;
-    cursor: url(../../../images/cursor.png), auto;
+    cursor: pointer;
 }
