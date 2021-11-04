@@ -1,69 +1,70 @@
 // Делаем выборку DOM элементов
-const popupOpenButtonElement = document.querySelector('.profile__edit-button')
-const popupElement = document.querySelector('.popup')
-const popupCloseButtonElement = popupElement.querySelector('.popup__close')
-const popupElementEdit = document.querySelector(".popup_type_edit")
+const popupEditProfile = document.querySelector(".popup_type_edit")
+const popupOpenButtonElementEdit = document.querySelector('.profile__edit-button')
+const popupCloseButtonElementEdit = popupEditProfile.querySelector('.popup__close')
 
-const togglePopupVisibility = function (element) {
-    element.classList.toggle('popup_opened')
+// Функция открытия попап
+const openPopup = function (element) {
+    element.classList.add('popup_opened');
 }
 
-const openPopup = function (element) {
-    element.classList.add('popup_opened')
+// Функция заполнения попап value
+const writePopup = function () {
     nameInput.value = nameElement.textContent;
     jobInput.value = descriptionElement.textContent;
 }
 
+
+// Функция закрытия попап
 const closePopup = function (element) {
     element.classList.remove('popup_opened')
 }
 
-//Клик по внешней области
-const closePopupByClickOnOverlay = function (event) {
-    console.log(event.target, event.currentTarget)
-    if (event.target !== popupElementEdit) {
-        return
-    }
+// //Клик по внешней области
+// const closePopupByClickOnOverlay = function (event) {
+//     if (event.target !== popupEditProfile) {
+//         return
+//     }
 
-    closePopup(popupElementEdit)
-}
+//     closePopup(popupEditProfile)
+// }
 
-popupElementEdit.addEventListener('click', closePopupByClickOnOverlay)
+// popupEditProfile.addEventListener('click', closePopupByClickOnOverlay)
 
 
-popupOpenButtonElement.addEventListener("click", function () {
-    openPopup(popupElementEdit);
+popupOpenButtonElementEdit.addEventListener("click", function () {
+    openPopup(popupEditProfile);
+    writePopup();
 })
 
-popupCloseButtonElement.addEventListener("click", function () {
-    closePopup(popupElementEdit);
+popupCloseButtonElementEdit.addEventListener("click", function () {
+    closePopup(popupEditProfile);
 })
 
-
-let nameElement = document.querySelector(".profile__title")
-let descriptionElement = document.querySelector(".profile__subtitle")
+const nameElement = document.querySelector(".profile__title")
+const descriptionElement = document.querySelector(".profile__subtitle")
 
 //Редактирование имени и информации о себе
 // Находим форму в DOM
-let formElement = document.querySelector(".popup__form")
+const formElement = document.querySelector(".popup__form")
 // Находим поля формы в DOM
-let nameInput = formElement.querySelector(".popup__text_name")
-let jobInput = formElement.querySelector(".popup__text_business")
+const nameInput = formElement.querySelector(".popup__text_name")
+const jobInput = formElement.querySelector(".popup__text_business")
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-function formSubmitHandler(evt) {
+function formEditSubmitHandler(evt) {
     evt.preventDefault();
     // Получите значение полей jobInput и nameInput из свойства value
-    let nameInputValue = nameInput.value;
-    let jobInputValue = jobInput.value;
+    const nameInputValue = nameInput.value;
+    const jobInputValue = jobInput.value;
     // Выберите элементы, куда должны быть вставлены значения полей
     nameElement.textContent = nameInputValue;
     descriptionElement.textContent = jobInputValue;
-    closePopup(popupElementEdit);
+    closePopup(popupEditProfile);
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', formEditSubmitHandler);
 
 
 //Спринт 5___________________________________________________________________
@@ -101,37 +102,38 @@ const elementSection = document.querySelector(".elements");
 const elementTemplate = document.querySelector(".element-template").content;
 
 //Функция наполнения каточек
-function iventCard(name, link) {
-    let elementCard = elementTemplate.querySelector('.element').cloneNode(true);
+function createCard(name, link) {
+    const elementCard = elementTemplate.querySelector('.element').cloneNode(true);
     elementCard.querySelector(".element__title").textContent = name;
     elementCard.querySelector(".element__ithem").src = link;
     setListeners(elementCard);
     return elementCard;
 }
 
+
 //Элементы карточки
 function setListeners(element) {
     // Функция изменения активного лайка на карточке
-    element.querySelector(".element__like-button").addEventListener("click", addingLike);
-    element.querySelector(".element__delite-button").addEventListener("click", addingDeliteCard);
+    element.querySelector(".element__like-button").addEventListener("click", toggleLike);
+    element.querySelector(".element__delite-button").addEventListener("click", deleteCard);
     const elementImg = element.querySelector(".element__ithem");
     elementImg.addEventListener("click", function () {
-        addingPopupImg(element)
+        openImagePopup(element)
     })
 }
 
 //Функция добавление карточек 
-function submitCard() {
+function renderCard() {
     initialCards.forEach((item) => {
-        const elmntCard = iventCard(item.name, item.link);
-        elementSection.prepend(elmntCard);
+        const elementCard = createCard(item.name, item.link);
+        elementSection.prepend(elementCard);
     })
 }
 
-submitCard();
+renderCard();
 
 // Функция удаления карточек
-function addingDeliteCard(evt) {
+function deleteCard(evt) {
     evt.target.closest(".element").remove();
 }
 
@@ -141,6 +143,7 @@ const popupElementAdd = document.querySelector('.popup_type_add')
 const popupOpenButtonElementAdd = document.querySelector('.profile__add-button')
 const popupCloseButtonElementAdd = popupElementAdd.querySelector('.popup__close')
 const popupSaveButtonElementAdd = popupElementAdd.querySelector(".popup__button-save")
+const popupFormAdd = popupElementAdd.querySelector(".popup__form")
 
 
 popupOpenButtonElementAdd.addEventListener("click", function () {
@@ -152,41 +155,43 @@ popupCloseButtonElementAdd.addEventListener("click", function () {
 })
 
 
-popupSaveButtonElementAdd.addEventListener("click", function (evt) {
+function addNewCard(evt) {
     evt.preventDefault();
     const name = popupElementAdd.querySelector(".popup__text_name");
     const link = popupElementAdd.querySelector(".popup__text_business");
-    const elmntCard = iventCard(name.value, link.value);
-    elementSection.prepend(elmntCard);
+    const elementCard = createCard(name.value, link.value);
+    elementSection.prepend(elementCard);
     name.value = "";
     link.value = "";
     closePopup(popupElementAdd);
-})
+}
+
+popupFormAdd.addEventListener("submit", addNewCard)
+
 
 // Функция добавление активного лайка на карточку 
-function addingLike(evt) {
+function toggleLike(evt) {
     evt.target.classList.toggle('element__like-button_active');
 }
 
 
-//Клик по внешней области
-const closePopupByClickOnOverlayAdd = function (event) {
-    console.log(event.target, event.currentTarget)
-    if (event.target !== popupElementAdd) {
-        return
-    }
+// //Клик по внешней области
+// const closePopupByClickOnOverlayAdd = function (event) {
+//     if (event.target !== popupElementAdd) {
+//         return
+//     }
 
-    closePopup(popupElementAdd)
-}
+//     closePopup(popupElementAdd)
+// }
 
-popupElementAdd.addEventListener('click', closePopupByClickOnOverlayAdd)
+// popupElementAdd.addEventListener('click', closePopupByClickOnOverlayAdd)
 
 
 //Выборка элементов попап с картинкой
 const popupImg = document.querySelector(".popup_type_img")
 const popupImgButtonClose = popupImg.querySelector(".popup__close")
 
-function addingPopupImg(element) {
+function openImagePopup(element) {
     // передаем функцию открытия попап
     openPopup(popupImg)
     //Выборка элементов которые нужно открыть в  попап
