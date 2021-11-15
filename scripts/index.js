@@ -1,36 +1,44 @@
 // Делаем выборку DOM элементов
 const popupEditProfile = document.querySelector(".popup_type_edit")
 const popupOpenButtonElementEdit = document.querySelector('.profile__edit-button')
-const popupCloseButtonElementEdit = popupEditProfile.querySelector('.popup__close')
+const popupCloseButtonElementEdit = popupEditProfile.querySelector('.popup__button-close')
 
 // Функция открытия попап
 const openPopup = function (element) {
     element.classList.add('popup_opened');
+    element.addEventListener('click', closePopupByClickOnOverlay)
+    document.addEventListener('keydown', closePopupByClickOnEsc)
 }
+
+// Функция закрытия попап
+const closePopup = function (element) {
+    element.classList.remove('popup_opened')
+    //убираем слушатель, чтобы он не дублировался каждый раз
+    element.removeEventListener('click', closePopupByClickOnOverlay)
+    document.removeEventListener('keydown', closePopupByClickOnEsc)
+}
+
+//Клик по внешней области
+const closePopupByClickOnOverlay = function (evt) {
+    const popupElement = document.querySelector('.popup_opened')
+    if (evt.target === popupElement) {
+        closePopup(popupElement);
+    }
+};
+
+//Клик по Escape
+const closePopupByClickOnEsc = function (evt) {
+    if (evt.key === 'Escape') {
+        const popupElement = document.querySelector('.popup_opened')
+        closePopup(popupElement);
+    }
+};
 
 // Функция заполнения попап value
 const writePopup = function () {
     nameInput.value = nameElement.textContent;
     jobInput.value = descriptionElement.textContent;
 }
-
-
-// Функция закрытия попап
-const closePopup = function (element) {
-    element.classList.remove('popup_opened')
-}
-
-// //Клик по внешней области
-// const closePopupByClickOnOverlay = function (event) {
-//     if (event.target !== popupEditProfile) {
-//         return
-//     }
-
-//     closePopup(popupEditProfile)
-// }
-
-// popupEditProfile.addEventListener('click', closePopupByClickOnOverlay)
-
 
 popupOpenButtonElementEdit.addEventListener("click", function () {
     openPopup(popupEditProfile);
@@ -48,8 +56,8 @@ const descriptionElement = document.querySelector(".profile__subtitle")
 // Находим форму в DOM
 const formElement = document.querySelector(".popup__form")
 // Находим поля формы в DOM
-const nameInput = formElement.querySelector(".popup__text_name")
-const jobInput = formElement.querySelector(".popup__text_business")
+const nameInput = formElement.querySelector(".popup__input_name")
+const jobInput = formElement.querySelector(".popup__input_business")
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -62,6 +70,9 @@ function formEditSubmitHandler(evt) {
     nameElement.textContent = nameInputValue;
     descriptionElement.textContent = jobInputValue;
     closePopup(popupEditProfile);
+    // disabled для кнопки сохранить, при использовании
+    popupSaveButtonElementAdd.disabled = true;
+    popupSaveButtonElementAdd.classList.add('popup__button-save_disabled')
 }
 
 formElement.addEventListener('submit', formEditSubmitHandler);
@@ -142,7 +153,7 @@ function deleteCard(evt) {
 // Делаем выборку DOM элементов
 const popupElementAdd = document.querySelector('.popup_type_add')
 const popupOpenButtonElementAdd = document.querySelector('.profile__add-button')
-const popupCloseButtonElementAdd = popupElementAdd.querySelector('.popup__close')
+const popupCloseButtonElementAdd = popupElementAdd.querySelector('.popup__button-close')
 const popupSaveButtonElementAdd = popupElementAdd.querySelector(".popup__button-save")
 const popupFormAdd = popupElementAdd.querySelector(".popup__form")
 
@@ -158,13 +169,16 @@ popupCloseButtonElementAdd.addEventListener("click", function () {
 
 function addNewCard(evt) {
     evt.preventDefault();
-    const name = popupElementAdd.querySelector(".popup__text_name");
-    const link = popupElementAdd.querySelector(".popup__text_business");
+    const name = popupElementAdd.querySelector(".popup__input_img-name");
+    const link = popupElementAdd.querySelector(".popup__input_img-url");
     const elementCard = createCard(name.value, link.value);
     elementSection.prepend(elementCard);
     name.value = "";
     link.value = "";
     closePopup(popupElementAdd);
+    // disabled для кнопки сохранить, при использовании
+    popupSaveButtonElementAdd.disabled = true;
+    popupSaveButtonElementAdd.classList.add('popup__button-save_disabled')
 }
 
 popupFormAdd.addEventListener("submit", addNewCard)
@@ -176,21 +190,9 @@ function toggleLike(evt) {
 }
 
 
-// //Клик по внешней области
-// const closePopupByClickOnOverlayAdd = function (event) {
-//     if (event.target !== popupElementAdd) {
-//         return
-//     }
-
-//     closePopup(popupElementAdd)
-// }
-
-// popupElementAdd.addEventListener('click', closePopupByClickOnOverlayAdd)
-
-
 //Выборка элементов попап с картинкой
 const popupImg = document.querySelector(".popup_type_img")
-const popupImgButtonClose = popupImg.querySelector(".popup__close")
+const popupImgButtonClose = popupImg.querySelector(".popup__button-close")
 
 function openImagePopup(element) {
     // передаем функцию открытия попап
