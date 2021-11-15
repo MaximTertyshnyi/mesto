@@ -18,3 +18,7 @@
     opacity: .6;
     cursor: pointer;
 }
+
+.popup__button-save:disabled{
+    opacity: .2;
+}
