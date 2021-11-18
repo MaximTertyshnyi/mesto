@@ -8,16 +8,16 @@ const obj = {
 };
 
 //Функция вызова ошибки
-const showInputError = (formElement, inputElement, errorMessage) => {
-    const errorElement = formElement.querySelector(`.popup__input-error_${inputElement.id}`);
+const showInputError = (formElement, inputElement, errorMessage, obj) => {
+    const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
     inputElement.classList.add(obj.inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(obj.errorClass);
 };
 
 //Функция скрытия ошибки
-const hideInputError = (formElement, inputElement) => {
-    const errorElement = formElement.querySelector(`.popup__input-error_${inputElement.id}`);
+const hideInputError = (formElement, inputElement, obj) => {
+    const errorElement = formElement.querySelector(`#${inputElement.name}-error`);
     inputElement.classList.add(obj.inputErrorClass);
     errorElement.textContent = '';
     errorElement.classList.remove(obj.errorClass);
@@ -25,9 +25,9 @@ const hideInputError = (formElement, inputElement) => {
 
 const checkInputValidity = (formElement, inputElement) => {
     if (!inputElement.validity.valid) {
-        showInputError(formElement, inputElement, inputElement.validationMessage);
+        showInputError(formElement, inputElement, inputElement.validationMessage, obj);
     } else {
-        hideInputError(formElement, inputElement);
+        hideInputError(formElement, inputElement, obj);
     }
 };
 
@@ -61,7 +61,7 @@ const setEventListeners = (formElement) => {
     });
 };
 
-const enableValidation = () => {
+const enableValidation = (obj) => {
     // Найдём все формы с указанным классом в DOM,
     // сделаем из них массив методом Array.from
     const formList = Array.from(document.querySelectorAll(obj.formSelector));
@@ -78,33 +78,3 @@ const enableValidation = () => {
 };
 
 enableValidation(obj);
-
-
-
-
-
-
-
-
-// function enableValidation() {
-//     const formSelector = Array.from(document.querySelectorAll('.popup__form'))
-//     formSelector.forEach(addListenersForm);
-// };
-
-// function addListenersForm(form) {
-//     const inputSelector = Array.from(document.querySelectorAll('.popup__input'));
-
-//     inputSelector.forEach(addListenersInput);
-
-//     form.addEventListener('submit', (evt) => {
-//         evt.preventDefault();
-//     });
-// }
-
-// function addListenersInput(input) {
-//     input.addEventListener('input', handleFieldValidation)
-// }
-
-// function handleFieldValidation(evt) {
-//     console.log(evt.target);
-// }

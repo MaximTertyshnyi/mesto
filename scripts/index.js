@@ -1,3 +1,31 @@
+//Массив каточек
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
 // Делаем выборку DOM элементов
 const popupEditProfile = document.querySelector(".popup_type_edit")
 const popupOpenButtonElementEdit = document.querySelector('.profile__edit-button')
@@ -6,7 +34,7 @@ const popupCloseButtonElementEdit = popupEditProfile.querySelector('.popup__butt
 // Функция открытия попап
 const openPopup = function (element) {
     element.classList.add('popup_opened');
-    element.addEventListener('click', closePopupByClickOnOverlay)
+    element.addEventListener('mousedown', closePopupByClickOnOverlay)
     document.addEventListener('keydown', closePopupByClickOnEsc)
 }
 
@@ -14,7 +42,7 @@ const openPopup = function (element) {
 const closePopup = function (element) {
     element.classList.remove('popup_opened')
     //убираем слушатель, чтобы он не дублировался каждый раз
-    element.removeEventListener('click', closePopupByClickOnOverlay)
+    element.removeEventListener('mousedown', closePopupByClickOnOverlay)
     document.removeEventListener('keydown', closePopupByClickOnEsc)
 }
 
@@ -54,10 +82,10 @@ const descriptionElement = document.querySelector(".profile__subtitle")
 
 //Редактирование имени и информации о себе
 // Находим форму в DOM
-const formElement = document.querySelector(".popup__form")
+const formProfileElement = popupEditProfile.querySelector(".popup__form")
 // Находим поля формы в DOM
-const nameInput = formElement.querySelector(".popup__input_name")
-const jobInput = formElement.querySelector(".popup__input_business")
+const nameInput = formProfileElement.querySelector(".popup__input_name")
+const jobInput = formProfileElement.querySelector(".popup__input_business")
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
@@ -75,38 +103,10 @@ function formEditSubmitHandler(evt) {
     popupSaveButtonElementAdd.classList.add('popup__button-save_disabled')
 }
 
-formElement.addEventListener('submit', formEditSubmitHandler);
+formProfileElement.addEventListener('submit', formEditSubmitHandler);
 
 
 //Спринт 5___________________________________________________________________
-
-//Массив каточек
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
 
 //Обьявление переменных
 const elementSection = document.querySelector(".elements");
@@ -135,14 +135,14 @@ function setListeners(element) {
 }
 
 //Функция добавление карточек 
-function renderCard() {
+function addInitialCards() {
     initialCards.forEach((item) => {
         const elementCard = createCard(item.name, item.link);
         elementSection.prepend(elementCard);
     })
 }
 
-renderCard();
+addInitialCards();
 
 // Функция удаления карточек
 function deleteCard(evt) {
