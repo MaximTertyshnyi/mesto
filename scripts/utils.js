@@ -13,7 +13,7 @@ export const closePopup = (element) => {
 }
 
 //Клик по внешней области
-export function closePopupByClickOnOverlay(evt) {
+export const closePopupByClickOnOverlay = (evt) => {
     const popupElement = document.querySelector('.popup_opened')
     if (evt.target === popupElement) {
         closePopup(popupElement);
@@ -21,7 +21,7 @@ export function closePopupByClickOnOverlay(evt) {
 };
 
 //Клик по Escape
-export function closePopupByClickOnEsc(evt) {
+export const closePopupByClickOnEsc = (evt) => {
     if (evt.key === 'Escape') {
         const popupElement = document.querySelector('.popup_opened')
         closePopup(popupElement);
