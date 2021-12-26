@@ -1,0 +1,12 @@
+export const elementSection = document.querySelector('.elements');
+export const popupEditProfile = '.popup_type_edit'
+export const nameElement = document.querySelector('.profile__title')
+export const descriptionElement = document.querySelector('.profile__subtitle')
+export const elementTemplate = document.querySelector('.element-template');
+export const popupOpenButtonElementEdit = document.querySelector('.profile__edit-button')
+export const popupElementAdd = '.popup_type_add'
+export const popupOpenButtonElementAdd = document.querySelector('.profile__add-button')
+export const popupEdit = document.forms['user-profile']
+export const popupAdd = document.forms['user-add']
+export const inputName = document.querySelector('.popup__input_name')
+export const inputBusiness = document.querySelector('.popup__input_business')
