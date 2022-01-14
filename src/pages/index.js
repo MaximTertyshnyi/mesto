@@ -46,10 +46,10 @@ const profileData = api.getProfileData();
 const cardsData = api.getCardsData();
 
 popupOpenButtonElementEdit.addEventListener('click', function () {
-    popupEditFormProfile.openPopup();
     const profileTextElement = userInfo.getUserInfo();
     inputName.value = profileTextElement.name
     inputBusiness.value = profileTextElement.description;
+    popupEditFormProfile.openPopup();
 })
 
 const popupImgClass = new PopupWithImage('.popup_type_img');
