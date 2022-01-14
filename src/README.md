@@ -6,7 +6,7 @@
 
 **Ссылка на проект**
 
-* [Ссылка]https://maximtertyshnyi.github.io/mesto/
+* [Ссылка]file:///Users/maksimtertysnyj/Desktop/mesto-main/dist/index.html
 
 **Что было сделано в ходе разработки**
 
