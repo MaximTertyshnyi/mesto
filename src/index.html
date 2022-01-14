@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="">
     <title>Место</title>
 </head>
 <body class="base">
@@ -13,13 +14,17 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Аватар профиля">
-        <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button" type="button"></button>
-          <p class="profile__subtitle">Исследователь океана</p>
+        <div class="profile__avatar-container">
+          <button class="profile__avatar-button" type="button" aria-label="Редактировать">
+            <img src=" " class="profile__avatar" alt="Аватар профиля"/>
+          </button>
         </div>
-        <button class="profile__add-button" type="button"></button>
+        <div class="profile__info">
+          <h1 class="profile__title"></h1>
+          <button class="profile__edit-button" type="button" aria-label="Редактировать"></button>
+          <p class="profile__subtitle"></p>
+        </div>
+        <button class="profile__add-button" type="button" aria-label="Добавить"></button>
       </section>
       <section class="elements"></section>
     </main>
@@ -27,14 +32,14 @@
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
     <div class="popup popup_type_edit">
-      <div class="popup__container">
+      <div class="popup__container"> 
         <button class="popup__button-close" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form name="user-profile" class="popup__form" novalidate>
           <fieldset class="popup__set">
-            <input class="popup__input popup__input_name" name="profilename" id="name" type="text" placeholder="Имя" value="Жак-Ив Кусто" required minlength="2" maxlength="40" autocomplete="off">
+            <input class="popup__input popup__input_name" name="profilename" id="name" type="text" placeholder="Имя" value="" required minlength="2" maxlength="40" autocomplete="off">
             <span id="profilename-error" class="popup__input-error popup__input-error_name"></span>
-            <input class="popup__input popup__input_business" name="description" id="business"  type="text" placeholder="Профессия" value="Исследователь океана" required minlength="2" maxlength="200" autocomplete="off">
+            <input class="popup__input popup__input_business" name="description" id="business"  type="text" placeholder="Профессия" value="" required minlength="2" maxlength="200" autocomplete="off">
             <span id="description-error" class="popup__input-error popup__input-error_business"></span>
           </fieldset>
           <button  type="submit" class="popup__button-save">Сохранить</button>
@@ -55,12 +60,34 @@
           <button  type="submit" class="popup__button-save">Coздать</button>
         </form>
       </div>
-    </div> 
+    </div>
+    <div class="popup popup_type_avatar">
+      <div class="popup__container">
+        <button class="popup__button-close" type="button"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form name="avatar-update" class="popup__form" novalidate>
+          <fieldset class="popup__set">
+            <input class="popup__input popup__input_type_avatar" name="link" id="avatar-url" type="url" placeholder="Ссылка на аватар" value="" required minlength="2" maxlength="200" autocomplete="off">
+            <span id="link-error" class="popup__input-error popup__input-error_type_avatar"></span>
+          </fieldset>
+          <button  type="submit" class="popup__button-save">Coздать</button>
+        </form>
+      </div>
+    </div>  
     <div class="popup popup_type_img">
       <div class="popup__container-img">
         <button class="popup__button-close" type="button"></button>
         <img class="popup__img" src=" " alt="Картинка пользователя">
         <h2 class="popup__title-img"></h2>
+      </div>
+    </div>
+    <div class="popup popup_type_card-delete">
+      <div class="popup__container">
+        <button class="popup__button-close" type="button"></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <form name="card-delete" class="popup__form" novalidate>
+          <button  type="submit" class="popup__button-save">Да</button>
+        </form>
       </div>
     </div> 
     <template class="element-template">
@@ -68,7 +95,10 @@
         <img class="element__ithem" src=" " alt="Картинка пользователя">
         <div class="element__detail">
           <h2 class="element__title"></h2>
-          <button class="element__like-button" type="button"></button>
+          <div class="element__like-conteiner">
+            <button class="element__like-button" type="button"></button>
+            <span class="element__like-counter"></span>
+          </div>
         </div>
         <button class="element__delite-button" type="button"></button>
       </div>
@@ -76,3 +106,5 @@
   </div>
 </body>
 </html>
+
+
