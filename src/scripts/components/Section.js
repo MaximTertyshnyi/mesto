@@ -9,6 +9,9 @@ export class Section {
     }
 
     addItem(element) {
-        this._conteinerSelector.prepend(element)
+        this._conteinerSelector.append(element)
+    }
+    addNewItem(element) {
+        this._conteinerSelector.prepend(element);
     }
 }
