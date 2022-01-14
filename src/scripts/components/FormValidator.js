@@ -13,7 +13,7 @@ export class FormValidator {
 
     //Функция вызова ошибки
     _showInputError = (inputElement, errorMessage) => {
-        const errorElement = this._formElement.querySelector(`#${inputElement.name}-error`);
+        const errorElement = this._formElement.querySelector(`.popup__input-error_${inputElement.id}`);
         inputElement.classList.add(this._inputErrorClass);
         errorElement.textContent = errorMessage;
         errorElement.classList.add(this._errorClass);
@@ -21,7 +21,7 @@ export class FormValidator {
 
     //Функция скрытия ошибки
     _hideInputError = (inputElement) => {
-        const errorElement = this._formElement.querySelector(`#${inputElement.name}-error`);
+        const errorElement = this._formElement.querySelector(`.popup__input-error_${inputElement.id}`);
         inputElement.classList.add(this._inputErrorClass);
         errorElement.textContent = '';
         inputElement.classList.remove(this._inputErrorClass);
