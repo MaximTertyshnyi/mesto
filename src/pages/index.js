@@ -181,7 +181,7 @@ const PopupFormAdd = new PopupWithForm(popupElementAdd, (item) => {
         .addNewCard(item.name, item.link)
         .then((res) => {
             const card = makeCard(res, elementTemplate);
-            addInitialCards.addItem(card);
+            addInitialCards.addNewItem(card);
             PopupFormAdd.closePopup();
         })
         .catch((err) => {
